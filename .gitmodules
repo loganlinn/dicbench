@@ -1,0 +1,6 @@
+[submodule "vendor/symfony/DependencyInjection"]
+	path = vendor/symfony/DependencyInjection
+	url = git://github.com/symfony/DependencyInjection.git
+[submodule "vendor/fabpot/Pimple"]
+	path = vendor/fabpot/Pimple
+	url = git://github.com/fabpot/Pimple.git
