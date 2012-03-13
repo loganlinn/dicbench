@@ -52,10 +52,6 @@ class SymfonyBenchmark extends Benchmark {
 		/*
 		 * Access
 		 */
-		//$c->get('session')->getLogger()->log('LOL');
-		//$c->get('logger')->log('test message!');
-		//$c->get('logger')->log('test message!');
-
 		for ($i = 0; $i < $num_generated_services; $i ++) {
 			$c->get('some_service_'.$i);
 		}

@@ -51,9 +51,6 @@ class PimpleBenchmark extends Benchmark {
 		/*
 		 * Access
 		 */
-		//$c['logger']->log('test message!');
-		//$c['logger']->log('test message!');
-
 		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c['some_service_'.$i];
 		}
