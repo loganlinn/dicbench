@@ -19,7 +19,9 @@ class BenchmarkCompare {
 
 			if (is_numeric($v)) {
 				$report[$k."_diff"] = $v - $b2r[$k];
-				$report[$k."_percent"] = $b2r[$k] != 0 ? 100*$v/$b2r[$k] : 'NaN';
+				$report[$k."_percent"] = $b2r[$k] != 0 ?
+					(100 * $v / $b2r[$k]) - 100 :
+					'NaN';
 			}
 		}
 
