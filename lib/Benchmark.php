@@ -1,8 +1,6 @@
 <?php
 
 abstract class Benchmark {
-	public static $loop = 100;
-
 	protected $name       = null;
 	protected $time       = array();
 	protected $memory     = array();

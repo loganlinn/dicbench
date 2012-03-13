@@ -42,7 +42,8 @@ class SymfonyBenchmark extends Benchmark {
 			->addMethodCall('setSession', array(new Reference('session')))
 			->addMethodCall('setAuth', array(new Reference('auth')));
 
-		for ($i = 0; $i < Benchmark::$loop; $i ++) {
+		$num_generated_services = 50;
+		for ($i = 0; $i < $num_generated_services; $i ++) {
 			$c->register('some_service_'.$i, '\DICBench\DummyClasses\SomeService')
 				->addMethodCall('setLogger', array(new Reference('logger')))
 				->addMethodCall('setAuth', array(new Reference('auth')));
@@ -55,7 +56,7 @@ class SymfonyBenchmark extends Benchmark {
 		//$c->get('logger')->log('test message!');
 		//$c->get('logger')->log('test message!');
 
-		for ($i = 0; $i < Benchmark::$loop; $i ++) {
+		for ($i = 0; $i < $num_generated_services; $i ++) {
 			$c->get('some_service_'.$i);
 		}
 	}

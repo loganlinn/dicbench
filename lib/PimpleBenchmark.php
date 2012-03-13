@@ -38,7 +38,8 @@ class PimpleBenchmark extends Benchmark {
 			return $o;
 		});
 
-		for ($i = 0; $i < Benchmark::$loop; $i++) {
+		$num_generated_services = 50;
+		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c['some_service_'.$i] = $c->share(function($c) {
 				$o = new \DICBench\DummyClasses\SomeService();
 				$o->setLogger($c['logger']);
@@ -53,7 +54,7 @@ class PimpleBenchmark extends Benchmark {
 		//$c['logger']->log('test message!');
 		//$c['logger']->log('test message!');
 
-		for ($i = 0; $i < Benchmark::$loop; $i++) {
+		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c['some_service_'.$i];
 		}
 	}
