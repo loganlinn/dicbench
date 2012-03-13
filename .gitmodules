@@ -7,3 +7,6 @@
 [submodule "vendor/symfony/Config"]
 	path = vendor/symfony/Config
 	url = git://github.com/symfony/Config.git
+[submodule "vendor/symfony/Yaml"]
+	path = vendor/symfony/Yaml
+	url = git://github.com/symfony/Yaml.git
