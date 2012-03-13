@@ -8,18 +8,18 @@ include dirname(__FILE__).'/../lib/SymfonyYamlBenchmark.php';
 
 
 $symfony = new SymfonyBenchmark();
-$symfony->run();
+$symfony->times(5)->run();
 
 $symfonyXml = new SymfonyXmlBenchmark();
-$symfonyXml->run();
+$symfonyXml->times(5)->run();
 
-$symfonyYaml = new SymfonyXmlBenchmark();
-$symfonyYaml->run();
+$symfonyYaml = new SymfonyYamlBenchmark();
+$symfonyYaml->times(5)->run();
 
 echo "\n== Symfony VS Symfony XML ==\n";
 $compare1 = new BenchmarkCompare($symfony, $symfonyXml);
 print_r($compare1->report());
 
-echo "\n== Symfony XML VS Symfony YAML ==\n";
-$compare2 = new BenchmarkCompare($symfonyXml, $symfonyYaml);
+echo "\n== Symfony VS Symfony YAML ==\n";
+$compare2 = new BenchmarkCompare($symfony, $symfonyYaml);
 print_r($compare2->report());
