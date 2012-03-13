@@ -4,3 +4,6 @@
 [submodule "vendor/fabpot/Pimple"]
 	path = vendor/fabpot/Pimple
 	url = git://github.com/fabpot/Pimple.git
+[submodule "vendor/symfony/Config"]
+	path = vendor/symfony/Config
+	url = git://github.com/symfony/Config.git

@@ -38,18 +38,11 @@ class PimpleBenchmark extends Benchmark {
 			return $o;
 		});
 
-		$c['some_service'] = $c->share(function($c) {
-			$o = new \DICBench\DummyClasses\SomeService();
-			$o->setLogger($c['logger']);
-			$o->setAuth($c['auth']);
-			return $o;
-		});
-
 		for ($i = 0; $i < Benchmark::$loop; $i++) {
-			$c['some_controller_'.$i] = $c->share(function($c) {
-				$o = new \DICBench\DummyClasses\SomeController();
-				$o->setSomeService($c['some_service']);
-				$o->setRequest($c['request']);
+			$c['some_service_'.$i] = $c->share(function($c) {
+				$o = new \DICBench\DummyClasses\SomeService();
+				$o->setLogger($c['logger']);
+				$o->setAuth($c['auth']);
 				return $o;
 			});
 		}
@@ -61,7 +54,7 @@ class PimpleBenchmark extends Benchmark {
 		//$c['logger']->log('test message!');
 
 		for ($i = 0; $i < Benchmark::$loop; $i++) {
-			$c['some_controller_'.$i];
+			$c['some_service_'.$i];
 		}
 	}
 }

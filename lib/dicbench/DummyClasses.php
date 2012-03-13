@@ -67,22 +67,3 @@ class Request {
 		$this->session = $session;
 	}
 }
-
-class SomeController {
-	protected $request;
-	protected $logger;
-	protected $someService;
-
-	public function setRequest(Request $request) {
-		$this->request = $request;
-	}
-
-	public function setLogger(Logger $logger) {
-		$this->logger = $logger;
-	}
-
-	public function setSomeService(SomeService $service) {
-		$this->someService = $service;
-	}
-}
-

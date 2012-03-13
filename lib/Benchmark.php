@@ -21,6 +21,7 @@ abstract class Benchmark {
 			$path = dirname(__FILE__).'/../'.$lib;
 
 			if ('php' == strtolower(end(explode('.', $lib)))) {
+				echo "Loading $path\n";
 				include_once($path);
 			} else {
 
