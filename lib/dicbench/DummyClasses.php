@@ -51,6 +51,10 @@ class SomeService {
 	public function setAuth(Auth $auth) {
 		$this->auth = $auth;
 	}
+
+	public function getLogger() {
+		return $this->logger;
+	}
 }
 
 class Request {

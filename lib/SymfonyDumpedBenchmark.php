@@ -76,7 +76,7 @@ class SymfonyDumpedBenchmark extends Benchmark {
 
 	protected function teardown() {
 		// delete the dumped file
-		//@unlink($this->file_name);
+		@unlink($this->file_name);
 	}
 
 	public function trial() {
@@ -85,6 +85,7 @@ class SymfonyDumpedBenchmark extends Benchmark {
 		/*
 		 * Access
 		 */
+		$num_generated_services = 50;
 		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c->get('some_service_'.$i);
 		}
