@@ -34,6 +34,8 @@ class SymfonyYamlBenchmark extends SymfonyBenchmark {
 	}
 
 	public function trial() {
+		$this->trial_start();
+
 		$c = new ContainerBuilder();
 		$loader = new YamlFileLoader($c, new FileLocator(__DIR__));
 		$loader->load('services.yaml');
@@ -41,5 +43,7 @@ class SymfonyYamlBenchmark extends SymfonyBenchmark {
 		for ($i = 0; $i < 50; $i ++) {
 			$c->get('some_service_'.$i);
 		}
+
+		$this->trial_end();
 	}
 }

@@ -80,6 +80,7 @@ class SymfonyDumpedBenchmark extends Benchmark {
 	}
 
 	public function trial() {
+		$this->trial_start();
 		$c = new $this->dumped_class();
 
 		/*
@@ -89,6 +90,7 @@ class SymfonyDumpedBenchmark extends Benchmark {
 		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c->get('some_service_'.$i);
 		}
+		$this->trial_end();
 	}
 
 }

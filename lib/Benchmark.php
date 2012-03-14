@@ -7,6 +7,8 @@ abstract class Benchmark {
 	protected $libs       = array();
 	protected $has_run    = false;
 	protected $trial_size = 1;
+	protected $memory_start = 0;
+	protected $memory_end   = 0;
 
 	abstract public function trial();
 
@@ -43,6 +45,14 @@ abstract class Benchmark {
 
 	}
 
+	public function trial_start() {
+		$this->memory_start = memory_get_usage();
+	}
+
+	public function trial_end() {
+		$this->memory_end = memory_get_usage();
+	}
+
 	public function run ($trial_size=1) {
 		if (!$this->has_run) {
 			$this->setup();
@@ -53,20 +63,16 @@ abstract class Benchmark {
 		$this->trial_size = $trial_size;
 
 		for ($i = 0; $i < $this->trial_size; $i++) {
-			$m0 = memory_get_usage(true);
+			//$m0 = memory_get_usage(true);
 			$t0 = microtime(true);
 
 			$this->trial();
 
 			$t1 = microtime(true);
-			$m1 = memory_get_usage(true);
-
-			if (($m1 - $m0) < 0) {
-				echo "WARNING: Negative memory usage detected.\n";
-			}
+			//$m1 = memory_get_usage(true);
 
 			$this->time[]   = array($t0, $t1);
-			$this->memory[] = array($m0, $m1);
+			$this->memory[] = array($this->memory_start, $this->memory_end);
 		}
 
 		$this->teardown();

@@ -21,6 +21,7 @@ class SymfonyBenchmark extends Benchmark {
 	);
 
 	public function trial() {
+		$this->trial_start();
 		/*
 		 * Setup
 		 */
@@ -55,5 +56,7 @@ class SymfonyBenchmark extends Benchmark {
 		for ($i = 0; $i < $num_generated_services; $i ++) {
 			$c->get('some_service_'.$i);
 		}
+
+		$this->trial_end();
 	}
 }

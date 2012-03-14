@@ -7,6 +7,7 @@ class PimpleBenchmark extends Benchmark {
 	);
 
 	public function trial() {
+		$this->trial_start();
 		/*
 		 * Setup
 		 */
@@ -54,5 +55,7 @@ class PimpleBenchmark extends Benchmark {
 		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c['some_service_'.$i];
 		}
+
+		$this->trial_end();
 	}
 }
