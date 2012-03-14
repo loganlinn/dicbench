@@ -1,6 +1,7 @@
 <?php
 
 class BenchmarkCompare {
+	protected $trial_size = 10;
 	protected $b1;
 	protected $b2;
 
@@ -9,9 +10,17 @@ class BenchmarkCompare {
 		$this->b2 = $b2;
 	}
 
+	public function trial_size($n=null) {
+		if ($trial_size === null) {
+			return $this->trial_size;
+		}
+
+		$this->trial_size = $n;
+	}
+
 	public function report() {
-		$b1r = $this->b1->report();
-		$b2r = $this->b2->report();
+		$b1r = $this->b1->report($this->trial_size);
+		$b2r = $this->b2->report($this->trial_size);
 
 		$report = array();
 		foreach ($b1r as $k => $v) {
@@ -26,5 +35,15 @@ class BenchmarkCompare {
 		}
 
 		return $report;
+	}
+
+	public function __toString() {
+		return join("\n", array(
+			'#######################################',
+			sprintf("# Report: %s vs %s", get_class($this->b1), get_class($this->b2)),
+			sprintf("#         trials: %d", $this->trial_size),
+			'#######################################',
+			str_replace('Array', '', print_r($this->report(), true))
+		));
 	}
 }

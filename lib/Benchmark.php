@@ -5,7 +5,8 @@ abstract class Benchmark {
 	protected $time       = array();
 	protected $memory     = array();
 	protected $libs       = array();
-	private   $num_trials = 1;
+	protected $has_run    = false;
+	protected $trial_size = 1;
 
 	abstract public function trial();
 
@@ -38,10 +39,13 @@ abstract class Benchmark {
 		}
 	}
 
-	public function run () {
+	public function run ($trial_size=1) {
 		$this->prepare();
+		$this->time       = array();
+		$this->memory     = array();
+		$this->trial_size = $trial_size;
 
-		for ($i = 0; $i < $this->num_trials; $i++) {
+		for ($i = 0; $i < $this->trial_size; $i++) {
 			$m0 = memory_get_usage();
 			$t0 = microtime(true);
 
@@ -50,25 +54,45 @@ abstract class Benchmark {
 			$t1 = microtime(true);
 			$m1 = memory_get_usage();
 
+			if (($m1 - $m0) < 0) {
+				echo "WARNING: Negative memory usage detected.\n";
+			}
+
 			$this->time[]   = array($t0, $t1);
 			$this->memory[] = array($m0, $m1);
 		}
+
+		$this->has_run = true;
 	}
 
-	public function report() {
+	public function has_run() {
+		return $this->has_run;
+	}
+
+	public function report($run_new=true) {
+		if ($run_new || !$this->has_run) {
+			$this->run(is_numeric($run_new) ? $run_new : 1);
+		}
+
 		return array (
 			'name'       => $this->name,
-			'trials'     => $this->num_trials,
+			'trial_size' => $this->trial_size,
 			'avg_time'   => $this->average_tuples($this->time),
 			'avg_memory' => $this->average_tuples($this->memory)
 		);
 	}
 
-	public function times($n) {
-		$this->num_trials = ($n > 0) ? $n : 1;
-		return $this;
+	public function __toString() {
+		return join("\n", array(
+			'#######################################',
+			sprintf("# Report: %s ", get_class($this)),
+			sprintf("#         trials: %d", $this->trial_size),
+			'#######################################',
+			str_replace('Array', '', print_r($this->report(), true))
+		));
 	}
 
+	// math helper
 	private function average_tuples($tuples) {
 		if (count($tuples) == 0) {
 			return 0;
