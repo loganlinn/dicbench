@@ -5,6 +5,7 @@ abstract class Benchmark {
 	protected $time       = array();
 	protected $memory     = array();
 	protected $libs       = array();
+	protected $markers    = array();
 	protected $has_run    = false;
 	protected $trial_size = 1;
 	protected $memory_start = 0;
@@ -95,6 +96,13 @@ abstract class Benchmark {
 			'avg_time'   => $this->average_tuples($this->time),
 			'avg_memory' => $this->average_tuples($this->memory)
 		);
+	}
+
+	public function mark($marker) {
+		if (!isset($this->markers[$marker])) {
+			$this->markers[$marker] = array();
+		}
+		$this->markers[$marker][] = microtime(true);
 	}
 
 	public function __toString() {
