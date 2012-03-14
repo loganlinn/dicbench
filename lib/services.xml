@@ -9,8 +9,7 @@
 	</parameters>
 
 	<services>
-		<service id="logger" class="\DICBench\DummyClasses\Logger">
-		</service>
+		<service id="logger" class="\DICBench\DummyClasses\Logger" scope="prototype" />
 
 		<service id="session" class="\DICBench\DummyClasses\Session">
 			<call method="setCookieName">

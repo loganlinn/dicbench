@@ -4,6 +4,7 @@ parameters:
 services:
     logger:
         class: \DICBench\DummyClasses\Logger
+        scope: prototype
     session:
         class: \DICBench\DummyClasses\Session
         calls:
