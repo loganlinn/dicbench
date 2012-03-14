@@ -1,7 +1,7 @@
 
 
 task :test do
-  Dir["tests/*\.php"].each do |test|
+  Dir["benchmarks/*\.php"].each do |test|
     sh "php #{test}"
   end
 end
