@@ -1,15 +1,18 @@
 <?php
 
 abstract class Benchmark {
-	protected $name       = null;
-	protected $time       = array();
-	protected $memory     = array();
-	protected $libs       = array();
-	protected $markers    = array();
-	protected $has_run    = false;
-	protected $trial_size = 1;
-	protected $memory_start = 0;
-	protected $memory_end   = 0;
+	protected $name           = null;
+	protected $time           = array();
+	protected $memory         = array();
+	protected $libs           = array();
+	protected $markers        = array();
+	protected $current_marker = null;
+	protected $has_run        = false;
+	protected $trial_size     = 1;
+	protected $trial_num      = 0;
+	protected $memory_start   = 0;
+	protected $memory_end     = 0;
+	protected $exclude_time   = 0;
 
 	abstract public function trial();
 
@@ -63,16 +66,17 @@ abstract class Benchmark {
 		$this->memory     = array();
 		$this->trial_size = $trial_size;
 
-		for ($i = 0; $i < $this->trial_size; $i++) {
-			//$m0 = memory_get_usage(true);
+		for ($this->trial_num = 0; $this->trial_num < $this->trial_size; $this->trial_num++) {
+			$this->exclude_time = 0;
+			$this->mark_end();
+
 			$t0 = microtime(true);
 
 			$this->trial();
 
 			$t1 = microtime(true);
-			//$m1 = memory_get_usage(true);
 
-			$this->time[]   = array($t0, $t1);
+			$this->time[]   = array($t0, $t1, $this->exclude_time);
 			$this->memory[] = array($this->memory_start, $this->memory_end);
 		}
 
@@ -93,16 +97,41 @@ abstract class Benchmark {
 		return array (
 			'name'       => $this->name,
 			'trial_size' => $this->trial_size,
+			'markers'    => $this->markers,
 			'avg_time'   => $this->average_tuples($this->time),
 			'avg_memory' => $this->average_tuples($this->memory)
 		);
 	}
 
+	// starts new marker
+	// ends currently running marker before starting new
 	public function mark($marker) {
+		$time = microtime(true); // capture time
+
+		$this->mark_end($time);
+
 		if (!isset($this->markers[$marker])) {
-			$this->markers[$marker] = array();
+			$this->markers[$this->trial_num][$marker] = array();
 		}
-		$this->markers[$marker][] = microtime(true);
+
+		$this->markers[$this->trial_num][$marker][] = array($time);
+
+		$this->current_marker = $marker;
+		$this->exclude_time += (microtime(true) - $time);
+	}
+
+	// ends the current marker
+	public function mark_end($time=null) {
+		if ($this->current_marker !== null) {
+			if ($time === null) {
+				$time = microtime(true);
+			}
+
+			$end = -1 + count($this->markers[$this->trial_num][$this->current_marker]);
+			$this->markers[$this->trial_num][$this->current_marker][$end][] = $time;
+
+			$this->current_marker = null;
+		}
 	}
 
 	public function __toString() {
@@ -124,7 +153,7 @@ abstract class Benchmark {
 		$values = array();
 
 		foreach ($tuples as $tuple) {
-			$values[] = $tuple[1] - $tuple[0];
+			$values[] = $tuple[1] - $tuple[0] - (isset($tuples[2]) ? $tuples[2] : 0);
 		}
 
 		return array_sum($values)/count($values);
