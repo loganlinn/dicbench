@@ -7,7 +7,7 @@
 (
     [name] => PimpleBenchmark
     [trial_size] => 1
-    [avg_time] => 0.00084996223449707
+    [avg_time] => 0.00084304809570312
     [avg_memory] => 0
 )
 #######################################
@@ -18,7 +18,7 @@
 (
     [name] => SymfonyBenchmark
     [trial_size] => 1
-    [avg_time] => 0.0085821151733398
+    [avg_time] => 0.0082659721374512
     [avg_memory] => 524288
 )
 #######################################
@@ -29,7 +29,7 @@
 (
     [name] => SymfonyDumpedBenchmark
     [trial_size] => 1
-    [avg_time] => 0.00078105926513672
+    [avg_time] => 0.00076913833618164
     [avg_memory] => 0
 )
 #######################################
@@ -40,7 +40,7 @@
 (
     [name] => SymfonyXmlBenchmark
     [trial_size] => 1
-    [avg_time] => 0.012777090072632
+    [avg_time] => 0.01282000541687
     [avg_memory] => 786432
 )
 #######################################
@@ -51,7 +51,7 @@
 (
     [name] => SymfonyYamlBenchmark
     [trial_size] => 1
-    [avg_time] => 0.030356884002686
+    [avg_time] => 0.03057599067688
     [avg_memory] => 786432
 )
 ```
