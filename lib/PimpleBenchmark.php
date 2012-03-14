@@ -15,24 +15,24 @@ class PimpleBenchmark extends Benchmark {
 		$c['COOKIE_NAME'] = "pimplecookie";
 
 		$c['logger'] = function($c) {
-			return new \DICBench\DummyClasses\Logger();
+			return new Logger();
 		};
 
 		$c['session'] = $c->share(function($c) {
-			$o = new \DICBench\DummyClasses\Session();
+			$o = new Session();
 			$o->setCookieName($c['COOKIE_NAME']);
 			$o->setLogger($c['logger']);
 			return $o;
 		});
 
 		$c['auth'] = $c->share(function($c) {
-			$o = new \DICBench\DummyClasses\Auth();
+			$o = new Auth();
 			$o->setSession($c['session']);
 			return $o;
 		});
 
 		$c['request'] = $c->share(function($c) {
-			$o = new \DICBench\DummyClasses\Request();
+			$o = new Request();
 			$o->setSession($c['session']);
 			$o->setAuth($c['auth']);
 			return $o;
@@ -41,7 +41,7 @@ class PimpleBenchmark extends Benchmark {
 		$num_generated_services = 50;
 		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c['some_service_'.$i] = $c->share(function($c) {
-				$o = new \DICBench\DummyClasses\SomeService();
+				$o = new SomeService();
 				$o->setLogger($c['logger']);
 				$o->setAuth($c['auth']);
 				return $o;

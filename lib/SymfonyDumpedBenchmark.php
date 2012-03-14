@@ -1,9 +1,12 @@
 <?php
+
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
 
-class SymfonyBenchmark extends Benchmark {
+
+class SymfonyDumpedBenchmark extends Benchmark {
 	protected $libs = array(
 		'lib/dicbench',
 		'vendor/symfony/DependencyInjection/ContainerInterface.php',
@@ -18,11 +21,21 @@ class SymfonyBenchmark extends Benchmark {
 		'vendor/symfony/DependencyInjection/Exception/RuntimeException.php',
 		'vendor/symfony/DependencyInjection/Exception',
 		'vendor/symfony/DependencyInjection/Reference.php',
+
+		'vendor/symfony/DependencyInjection/Variable.php',
+		'vendor/symfony/DependencyInjection/Dumper/DumperInterface.php',
+		'vendor/symfony/DependencyInjection/Dumper/Dumper.php',
+		'vendor/symfony/DependencyInjection/Dumper/PhpDumper.php',
 	);
 
-	public function trial() {
+	protected $dumped_class;
+	protected $file_name;
+
+	protected function setup() {
+		parent::setup();
+
 		/*
-		 * Setup
+		 * Setup & dump
 		 */
 		$c = new ContainerBuilder();
 
@@ -49,11 +62,32 @@ class SymfonyBenchmark extends Benchmark {
 				->addMethodCall('setAuth', array(new Reference('auth')));
 		}
 
+		$dumper = new PhpDumper($c);
+
+		$this->dumped_class = 'DumpedServiceContainer';
+		$this->file_name = dirname(__FILE__) . '/' . $this->dumped_class . '.php';
+
+		$fh = fopen($this->file_name, 'w+');
+		fwrite($fh, $dumper->dump(array('class' => $this->dumped_class)));
+		fclose($fh);
+
+		include $this->file_name;
+	}
+
+	protected function teardown() {
+		// delete the dumped file
+		//@unlink($this->file_name);
+	}
+
+	public function trial() {
+		$c = new $this->dumped_class();
+
 		/*
 		 * Access
 		 */
-		for ($i = 0; $i < $num_generated_services; $i ++) {
+		for ($i = 0; $i < $num_generated_services; $i++) {
 			$c->get('some_service_'.$i);
 		}
 	}
+
 }

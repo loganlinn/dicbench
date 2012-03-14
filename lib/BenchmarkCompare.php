@@ -43,7 +43,7 @@ class BenchmarkCompare {
 			sprintf("# Report: %s vs %s", get_class($this->b1), get_class($this->b2)),
 			sprintf("#         trials: %d", $this->trial_size),
 			'#######################################',
-			str_replace('Array', '', print_r($this->report(), true))
+			str_replace('Array', '', print_r($this->report(false), true))
 		));
 	}
 }

@@ -1,6 +1,4 @@
 <?php
-namespace DICBench\DummyClasses;
-
 class Logger {
 	private static $count = 0;
 	private $id;

@@ -14,7 +14,7 @@ abstract class Benchmark {
 		$this->name = $name === null ? get_class($this) : $name;
 	}
 
-	protected function prepare() {
+	protected function setup() {
 		// include vendor files
 		foreach ($this->libs as $lib) {
 			$path = dirname(__FILE__).'/../'.$lib;
@@ -39,20 +39,27 @@ abstract class Benchmark {
 		}
 	}
 
+	protected function teardown() {
+
+	}
+
 	public function run ($trial_size=1) {
-		$this->prepare();
+		if (!$this->has_run) {
+			$this->setup();
+		}
+
 		$this->time       = array();
 		$this->memory     = array();
 		$this->trial_size = $trial_size;
 
 		for ($i = 0; $i < $this->trial_size; $i++) {
-			$m0 = memory_get_usage();
+			$m0 = memory_get_usage(true);
 			$t0 = microtime(true);
 
 			$this->trial();
 
 			$t1 = microtime(true);
-			$m1 = memory_get_usage();
+			$m1 = memory_get_usage(true);
 
 			if (($m1 - $m0) < 0) {
 				echo "WARNING: Negative memory usage detected.\n";
@@ -61,6 +68,8 @@ abstract class Benchmark {
 			$this->time[]   = array($t0, $t1);
 			$this->memory[] = array($m0, $m1);
 		}
+
+		$this->teardown();
 
 		$this->has_run = true;
 	}
@@ -88,7 +97,7 @@ abstract class Benchmark {
 			sprintf("# Report: %s ", get_class($this)),
 			sprintf("#         trials: %d", $this->trial_size),
 			'#######################################',
-			str_replace('Array', '', print_r($this->report(), true))
+			str_replace('Array', '', print_r($this->report(false), true))
 		));
 	}
 

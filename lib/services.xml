@@ -9,9 +9,9 @@
 	</parameters>
 
 	<services>
-		<service id="logger" class="\DICBench\DummyClasses\Logger" scope="prototype" />
+		<service id="logger" class="Logger" scope="prototype" />
 
-		<service id="session" class="\DICBench\DummyClasses\Session">
+		<service id="session" class="Session">
 			<call method="setCookieName">
 				<argument>%COOKIE_NAME%</argument>
 			</call>
@@ -20,13 +20,13 @@
 			</call>
 		</service>
 
-		<service id="auth" class="\DICBench\DummyClasses\Auth">
+		<service id="auth" class="Auth">
 			<call method="setSession">
 				<argument type="service" id="session" />
 			</call>
 		</service>
 
-		<service id="request" class="\DICBench\DummyClasses\Request">
+		<service id="request" class="Request">
 			<call method="setSession">
 				<argument type="service" id="session" />
 			</call>
@@ -35,7 +35,7 @@
 			</call>
 		</service>
 
-		<service id="some_service_0" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_0" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -43,7 +43,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_1" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_1" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -51,7 +51,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_2" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_2" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -59,7 +59,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_3" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_3" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -67,7 +67,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_4" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_4" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -75,7 +75,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_5" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_5" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -83,7 +83,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_6" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_6" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -91,7 +91,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_7" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_7" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -99,7 +99,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_8" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_8" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -107,7 +107,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_9" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_9" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -115,7 +115,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_10" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_10" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -123,7 +123,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_11" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_11" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -131,7 +131,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_12" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_12" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -139,7 +139,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_13" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_13" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -147,7 +147,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_14" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_14" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -155,7 +155,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_15" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_15" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -163,7 +163,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_16" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_16" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -171,7 +171,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_17" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_17" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -179,7 +179,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_18" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_18" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -187,7 +187,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_19" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_19" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -195,7 +195,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_20" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_20" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -203,7 +203,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_21" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_21" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -211,7 +211,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_22" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_22" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -219,7 +219,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_23" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_23" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -227,7 +227,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_24" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_24" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -235,7 +235,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_25" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_25" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -243,7 +243,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_26" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_26" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -251,7 +251,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_27" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_27" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -259,7 +259,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_28" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_28" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -267,7 +267,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_29" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_29" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -275,7 +275,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_30" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_30" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -283,7 +283,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_31" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_31" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -291,7 +291,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_32" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_32" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -299,7 +299,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_33" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_33" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -307,7 +307,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_34" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_34" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -315,7 +315,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_35" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_35" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -323,7 +323,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_36" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_36" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -331,7 +331,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_37" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_37" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -339,7 +339,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_38" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_38" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -347,7 +347,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_39" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_39" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -355,7 +355,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_40" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_40" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -363,7 +363,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_41" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_41" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -371,7 +371,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_42" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_42" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -379,7 +379,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_43" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_43" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -387,7 +387,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_44" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_44" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -395,7 +395,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_45" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_45" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -403,7 +403,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_46" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_46" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -411,7 +411,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_47" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_47" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -419,7 +419,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_48" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_48" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
@@ -427,7 +427,7 @@
 				<argument type="service" id="logger" />
 			</call>
 		</service>
-		<service id="some_service_49" class="\DICBench\DummyClasses\SomeService">
+		<service id="some_service_49" class="SomeService">
 			<call method="setAuth">
 				<argument type="service" id="auth" />
 			</call>
