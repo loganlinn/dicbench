@@ -6040,13 +6040,6 @@ class PimpleLargeBenchmark extends Benchmark {
 			return $o;
 		});
 
-		/*
-		 * Access
-		 */
-		for ($i = 0; $i < 100; $i++) {
-			$c['some_service_'.$i];
-		}
-
 		$this->trial_end();
 	}
 }

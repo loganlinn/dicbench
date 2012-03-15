@@ -3075,14 +3075,9 @@ class SymfonyDumpedLargeBenchmark extends Benchmark {
 
 	public function trial() {
 		$this->trial_start();
+
 		$c = new $this->dumped_class();
 
-		/*
-		 * Access
-		 */
-		for ($i = 0; $i < 100; $i++) {
-			$c->get('some_service_'.$i);
-		}
 		$this->trial_end();
 	}
 
