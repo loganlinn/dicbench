@@ -98,7 +98,6 @@ abstract class Benchmark {
 		return array (
 			'name'       => $this->name,
 			'trial_size' => $this->trial_size,
-			'markers'    => $this->markers,
 			'avg_time'   => $this->average_tuples($this->time),
 			'avg_memory' => $this->average_tuples($this->memory)
 		);
