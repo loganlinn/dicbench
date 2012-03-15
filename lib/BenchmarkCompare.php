@@ -20,6 +20,7 @@ class BenchmarkCompare {
 
 	public function report() {
 		$b1r = $this->b1->report($this->trial_size);
+		gc_collect_cycles();
 		$b2r = $this->b2->report($this->trial_size);
 
 		$report = array();

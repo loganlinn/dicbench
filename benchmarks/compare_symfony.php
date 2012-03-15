@@ -13,5 +13,9 @@ $symfonyYaml = new SymfonyYamlBenchmark();
 $compare1 = new BenchmarkCompare($symfonyPhp, $symfonyXml);
 echo $compare1;
 
+// cleanup
+unset($compare1);
+gc_collect_cycles();
+
 $compare2 = new BenchmarkCompare($symfonyPhp, $symfonyYaml);
 echo $compare2;
