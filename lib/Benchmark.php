@@ -50,10 +50,12 @@ abstract class Benchmark {
 	}
 
 	public function trial_start() {
+		$this->mark_end();
 		$this->memory_start = memory_get_usage();
 	}
 
 	public function trial_end() {
+		$this->mark_end();
 		$this->memory_end = memory_get_usage();
 	}
 
@@ -68,7 +70,6 @@ abstract class Benchmark {
 
 		for ($this->trial_num = 0; $this->trial_num < $this->trial_size; $this->trial_num++) {
 			$this->exclude_time = 0;
-			$this->mark_end();
 
 			$t0 = microtime(true);
 
@@ -105,6 +106,7 @@ abstract class Benchmark {
 
 	// starts new marker
 	// ends currently running marker before starting new
+	// markers are inteded to be unique per trial
 	public function mark($marker) {
 		$time = microtime(true); // capture time
 
@@ -114,7 +116,7 @@ abstract class Benchmark {
 			$this->markers[$this->trial_num][$marker] = array();
 		}
 
-		$this->markers[$this->trial_num][$marker][] = array($time);
+		$this->markers[$this->trial_num][$marker][] = $time;
 
 		$this->current_marker = $marker;
 		$this->exclude_time += (microtime(true) - $time);
@@ -127,8 +129,7 @@ abstract class Benchmark {
 				$time = microtime(true);
 			}
 
-			$end = -1 + count($this->markers[$this->trial_num][$this->current_marker]);
-			$this->markers[$this->trial_num][$this->current_marker][$end][] = $time;
+			$this->markers[$this->trial_num][$this->current_marker][] = $time;
 
 			$this->current_marker = null;
 		}

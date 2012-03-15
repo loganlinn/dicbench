@@ -18,7 +18,6 @@ class SymfonyYamlBenchmark extends SymfonyBenchmark {
 				'vendor/symfony/Yaml/Parser.php',
 				'vendor/symfony/Yaml/Yaml.php',
 				'vendor/symfony/DependencyInjection/Alias.php',
-				//'vendor/symfony/DependencyInjection/SimpleXMLElement.php',
 				'vendor/symfony/Config/FileLocatorInterface.php',
 				'vendor/symfony/Config/FileLocator.php',
 				'vendor/symfony/Config/Loader/LoaderInterface.php',
