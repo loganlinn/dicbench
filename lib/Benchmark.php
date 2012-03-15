@@ -154,7 +154,7 @@ abstract class Benchmark {
 		$values = array();
 
 		foreach ($tuples as $tuple) {
-			$values[] = $tuple[1] - $tuple[0] - (isset($tuples[2]) ? $tuples[2] : 0);
+			$values[] = $tuple[1] - $tuple[0] - (isset($tuple[2]) ? $tuple[2] : 0);
 		}
 
 		return array_sum($values)/count($values);
